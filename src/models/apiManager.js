@@ -129,7 +129,7 @@
   }
 ]
 
-export default class APIManager {
+export default class ApiManager {
     constructor() {
       this.currentPageIndex = 0
     }
@@ -137,46 +137,13 @@ export default class APIManager {
    getAllPageData() {
       
       const pageData = mockPages[this.currentPageIndex]
-      currentPageIndex = this.currentPageIndex + 1
+      this.currentPageIndex = this.currentPageIndex + 1
 
       if (this.currentPageIndex === mockPages.length){
-          currentPageIndex = 0;
+          this.currentPageIndex = 0;
       }
       return pageData
     }
     
-
-
-
-   getUsersList(){
-      const usersListClone= [...users];
-        return usersListClone;
-    }
-
-   getMainUser(){
-      const userObj = mockData.mainUser;
-        return userObj;
-    }
-
-   getUserFriends(){
-      const friendsList = mockData.friends;
-        return friendsList;
-    }
-
-   getPokemon(){
-        const pokemon = mockData.pokemon;
-          return pokemon;
-    }
-
-   getQuote(){
-        const quote = mockData.quote;
-          return quote;
-    }
-
-   getAboutMe(){
-        const aboutMe = mockData.aboutMe;
-          return aboutMe;
-    }
-  
   }
 

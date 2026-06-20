@@ -1,12 +1,10 @@
-import { getAllPageData } from "./models/apiManager.js"
+import ApiManager from "./models/apiManager.js"
 import Renderer from "./view/renderer.js"
 import PageController from "./controller/pageController.js"
 import StorageManager from "./models/storageManager.js"
 
-const apiManager = {
-  getAllPageData: getAllPageData
-}
 
+const apiManager = new ApiManager()
 const renderer = new Renderer();
 const storageManager = new StorageManager();
 
