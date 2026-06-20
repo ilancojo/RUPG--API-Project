@@ -6,11 +6,11 @@ export default class Renderer {
 
 
     renderMainUser(mainUser){   //אובייקט של משתמש 
-    const mainUserContainer = document.getElementById("#main-user-container")
+    const mainUserContainer = document.getElementById("main-user-container")
     mainUserContainer.innerHTML = "";
     
     const divImg = document.createElement("div");
-    const img = document.createElement("imge");
+    const img = document.createElement("img");
     img.src = mainUser.image;
     
     const divInfo = document.createElement("div");
@@ -30,13 +30,13 @@ export default class Renderer {
 
 
     renderPokemon(pokemon){
-        const pokemonContainer = document.getElementById("#pokemon-container")
-        pokemon.innerHTML = "";
+        const pokemonContainer = document.getElementById("pokemon-container")
+        pokemonContainer.innerHTML = "";
             
         const divInfo = document.createElement("div");
-        const pokemonImg = document.createElement("imge");
+        const pokemonImg = document.createElement("img");
         const pokemonName = document.createElement("p");
-        pokemonImg.src = mainUser.image;
+        pokemonImg.src = pokemon.image;
         pokemonName.textContent = "Favorite Pokemon : " +  pokemon.name ;
 
         divInfo.appendChild(pokemonImg);
@@ -44,9 +44,10 @@ export default class Renderer {
         pokemonContainer.appendChild(divInfo);
 
     }
+
     renderQuote(quote){
-        const quoteContainer =document.getElementById("#quote")
-        quote.innerHTML = "";
+        const quoteContainer =document.getElementById("quote")
+        quoteContainer.innerHTML = "";
 
         const quoteDiv = document.createElement("div");
         const hederQuote = document.createElement("h3");
@@ -63,15 +64,15 @@ export default class Renderer {
 
 
     renderAboutMe(aboutMe){
-        const aboutMeContainer = document.getElementById("#about")
-        aboutMe.innerHTML = "";
+        const aboutMeContainer = document.getElementById("about")
+        aboutMeContainer.innerHTML = "";
 
         const aboutDiv = document.createElement("div");
         const aboutHeder = document.createElement("h3");
         const aboutText = document.createElement("p");
         
         aboutHeder.textContent = "About Me -  "
-        aboutText.textContent =  quote ;
+        aboutText.textContent =  aboutMe ;
     
         aboutDiv.appendChild(aboutHeder);
         aboutDiv.appendChild(aboutText);
@@ -81,21 +82,23 @@ export default class Renderer {
     }
 
     renderFriends(friends){ //LIST
-        const friendsContainer = document.getElementById("#friends-container")
-        friends.innerHTML = "";
+        const friendsContainer = document.getElementById("friends-container")
+        friendsContainer.innerHTML = "";
 
         const friendsDiv = document.createElement("div");
         const friendsHeder = document.createElement("h3");
         const friendTable = document.createElement("ul");
 
+        friendsHeder.innerText = "Friends" ;
+
         for (const friendInfo of friends){
 
-            const il = document.createElement("il");
-            il.textContent = friendInfo[0] + friendInfo[1];
+            const li = document.createElement("li");
+            il.textContent = friendInfo.firstName + friendInfo.lastName;
 
-            friendTable.appendChild(il);
+            friendTable.appendChild(li);
         }
-        
+
         friendsDiv.appendChild(friendsHeder)
         friendsDiv.appendChild(friendTable)
         friendsContainer.appendChild(friendsDiv)
