@@ -17,11 +17,11 @@ export default class PageController {
    }
     saveCurrentPage() {
         if (this.currentPageData === null) {
-            console.log("No page data to save")
+            this.renderer.renderMessage("No page data to save")
             return
         }
         this.storageManager.savePage(this.currentPageData)
-        console.log("Page saved successfully")
+        this.renderer.renderMessage("Page saved successfully")
     }
   
 
@@ -29,10 +29,11 @@ export default class PageController {
         const savedPage = this.storageManager.loadPage()
 
         if (savedPage === null) {
-            console.log("No saved page found")
+            this.renderer.renderMessage("No saved page found")
             return
         }
         this.currentPageData = savedPage
         this.renderer.renderPage(savedPage)
+        this.renderer.renderMessage("Saved page loaded successfully")
     }
 }
