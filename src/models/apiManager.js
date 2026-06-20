@@ -129,54 +129,54 @@
   }
 ]
 
-let currentPageIndex = 0
+export default class APIManager {
+    constructor() {
+      this.currentPageIndex = 0
+    }
 
-export function getAllPageData() {
-  const pageData = mockPages[currentPageIndex]
+   getAllPageData() {
+      
+      const pageData = mockPages[this.currentPageIndex]
+      currentPageIndex = this.currentPageIndex + 1
 
-  currentPageIndex = currentPageIndex + 1
-
-  if (currentPageIndex === mockPages.length) {
-    currentPageIndex = 0
-  }
-
-  return pageData
-}
+      if (this.currentPageIndex === mockPages.length){
+          currentPageIndex = 0;
+      }
+      return pageData
+    }
     
 
 
 
-export  function getUsersList(){
-        const usersListClone= [...users];
+   getUsersList(){
+      const usersListClone= [...users];
         return usersListClone;
     }
 
-export  function getMainUser(){
-        const userObj = mockData.mainUser;
+   getMainUser(){
+      const userObj = mockData.mainUser;
         return userObj;
     }
 
-export  function getUserFriends(){
-        const friendsList = mockData.friends;
+   getUserFriends(){
+      const friendsList = mockData.friends;
         return friendsList;
     }
 
-export  function getPokemon(){
+   getPokemon(){
         const pokemon = mockData.pokemon;
-        return pokemon;
+          return pokemon;
     }
 
-export  function getQuote(){
+   getQuote(){
         const quote = mockData.quote;
-        return quote;
+          return quote;
     }
 
-export  function getAboutMe(){
+   getAboutMe(){
         const aboutMe = mockData.aboutMe;
-        return aboutMe;
+          return aboutMe;
     }
-
-    
-
-
+  
+  }
 
