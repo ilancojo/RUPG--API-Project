@@ -11,30 +11,7 @@ export class User{
 
     }
        
-/**
-    //FOR MANAGER
 
-    const userObj = { 
-        mainUser: {},
-        friends: []
-    }
-
-   getUsersObj(){
-        const usersCloneObject = {...userObj};
-        return usersCloneObject;
-    }
-
-    getMainUser(){
-        const userObj = userObj.mainUser;
-        return userObj;
-    }
-
-    getUserFriends(){
-        const friendsList = userObj.friends;
-        return friendsList;
-    }
-
- */
  
 } 
 

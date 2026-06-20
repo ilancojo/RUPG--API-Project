@@ -1,4 +1,4 @@
-export class Pokimon{
+export class Pokemon{
 
     constructor (name , image ){
 
