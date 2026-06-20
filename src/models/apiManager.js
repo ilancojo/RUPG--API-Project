@@ -42,8 +42,7 @@
 
 export function getAllPageData(){
 
-    
-
+    const allDataPage 
 
 }
 
