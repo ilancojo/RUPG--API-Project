@@ -1,11 +1,11 @@
 
 export class User{
 
-    constructor (firstName , lastName ,picture =null  ,country =null ,city =null){
+    constructor (firstName , lastName ,image ,country ,city){
 
         this.firstName = firstName;
         this.lastName = lastName;
-        this.picture = picture;
+        this.image = image;
         this.country = country;
         this.city = city ;
 

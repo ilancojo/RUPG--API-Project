@@ -1,9 +1,9 @@
 export class Pokimon{
 
-    constructor (name , picture ){
+    constructor (name , image ){
 
         this.name = name;
-        this.picture = picture;
+        this.image = image;
 
 
     }
