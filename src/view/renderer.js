@@ -110,6 +110,15 @@ export default class Renderer {
         friendsContainer.appendChild(friendsDiv)
     }    
 
+    renderMessage(message) {
+        const messageContainer = document.getElementById("message-container")
+        messageContainer.innerHTML = ""
+
+        const errorMessage = document.createElement("p")
+        errorMessage.textContent = message
+
+        messageContainer.appendChild(errorMessage)
+    }
 
 }
 
