@@ -9,45 +9,40 @@
 
 
 <body>
-  
-    <header>
-
-        main user
-
-    </header>
     
-    <article>
+    <div id="main-container" >
 
-        <section>
-            qoute
+        <article>
+            <header id = "main-user-container">
+                main user
+            </header>
 
-        </section>
-            
-        <section>
-            pokemon
-        </section>
-            
-        <section>
-            about me
-        </section>
+            <section id="qoute">
+                qoute
+            </section>
+                
+            <section id="pokemon-container">
+                Favorite Pokemon
+            </section>
+                
+            <section id="about">
+                about me
+            </section>
 
-        <div>
+            <div id="btn-container">
+                <button id="btn-generate">Generate User</button>
+                <button id="btn-save">Save User Page</button>
+                <button id="btn-lode">Load User Page</button>
+            </div>
 
-            <button>Generate User</button>
-            <button>Save User Page</button>
-            <button>Load User Page</button>
-        
-        </div>
+        </article>
 
-    </article>
-
-    <aside>
-        friends
-    </aside>
-
-
-
+        <aside>
+            friends
+        </aside>
+    </div>
+    
+<script type="module" src="./src/main.js"></script>
 </body>
 
-<script type="module" src="./src/main.js"></script>
 </html>

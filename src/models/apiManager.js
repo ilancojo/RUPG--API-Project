@@ -1,7 +1,5 @@
-
-
-    //  import { Pokimon } from "./pokimon";
-    //   import { User } from "./user";
+//  import { Pokimon } from "./pokimon";
+//   import { User } from "./user";
 
 
     const users = [
@@ -28,11 +26,17 @@
     const mockData = {
 
         mainUser: users[0],
-        friends: users.slice(1),
+
+        friends: users.slice(1).map( friend=>{
+            return {    firstName :friend.firstName,
+                        lastName : friend.lastName
+                    }
+        }),
         
-        pokemon : {name: "pickchu " , img: "https://www.ebay.com/itm/263267872314" },
+        pokemon : {name: "pickchu " , imge: "https://www.ebay.com/itm/263267872314" },
         
-        quote : "this is quate ",
+        qoute : "this is qoute ",
+
         aboutMe : "about be "
     }
 
@@ -43,18 +47,32 @@ export  function getUsersList(){
         return usersListClone;
     }
 
- export  function getMainUser(){
+export  function getMainUser(){
         const userObj = mockData.mainUser;
         return userObj;
     }
 
- export  function getUserFriends(){
+export  function getUserFriends(){
         const friendsList = mockData.friends;
         return friendsList;
     }
 
+export  function getPokemon(){
+        const pokemon = mockData.pokemon;
+        return pokemon;
+    }
 
+export  function getQoute(){
+        const qoute = mockData.qoute;
+        return qoute;
+    }
 
+export  function getAboutMe(){
+        const aboutMe = mockData.aboutMe;
+        return aboutMe;
+    }
+
+    
 
 
 
