@@ -3,9 +3,15 @@
 
 export default class Renderer {
 
+    renderPage(pageData) {
+    this.renderMainUser(pageData.mainUser)
+    this.renderFriends(pageData.friends)
+    this.renderPokemon(pageData.pokemon)
+    this.renderQuote(pageData.quote)
+    this.renderAboutMe(pageData.aboutMe)
+    }
 
-
-    renderMainUser(mainUser){   //אובייקט של משתמש 
+    renderMainUser(mainUser){  
     const mainUserContainer = document.getElementById("main-user-container")
     mainUserContainer.innerHTML = "";
     
