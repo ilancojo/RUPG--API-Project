@@ -8,9 +8,31 @@ export default class PageController {
     }
 
   generatePage() {
-    const pageData = this.apiManager.getAllPageData() 
+        if (this.currentPageData === null) {
+            console.log("No page data to save")
+            return
+        }
+        this.storageManager.savePage(this.currentPageData)
+        console.log("Page saved successfully")
+   }
+    saveCurrentPage() {
+        if (this.currentPageData === null) {
+            console.log("No page data to save")
+            return
+        }
+        this.storageManager.savePage(this.currentPageData)
+        console.log("Page saved successfully")
+    }
+  
 
-    this.currentPageData = pageData;
-    this.renderer.renderPage(pageData);
-  }
+    loadSavedPage() {
+        const savedPage = this.storageManager.loadPage()
+
+        if (savedPage === null) {
+            console.log("No saved page found")
+            return
+        }
+        this.currentPageData = savedPage
+        this.renderer.renderPage(savedPage)
+    }
 }
