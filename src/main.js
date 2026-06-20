@@ -1,38 +1,15 @@
 import  {
     getUsersList, getMainUser ,getUserFriends,
-    getPokemon,getQoute,getAboutMe
+    getPokemon,getQuote,getAboutMe
     
-    } from "./models"
+    } from "./models/apiManager.js"
 
+import Renderer from "./view/renderer.js"
 
-///UI- presentation logic 
+const renderer = new Renderer()
 
-function refreshMainUser(){
-    const mainUser =document.querySelector("#")
-    mainUser.innerHTML = "";
-        
-}
-function refreshFriends(){
-    const friends =document.querySelector("#")
-        friends.innerHTML = "";
-
-}
-
-function refreshPokemon(){
-    const pokemon =document.querySelector("#")
-    pokemon.innerHTML = "";
-        
-}
-function refreshQuote(){
-    const quote =document.querySelector("#")
-    quote.innerHTML = "";
-        
-}
-function refreshAboutMe(){
-    const aboutMe =document.querySelector("#")
-    aboutMe.innerHTML = "";
-        
-}
-
-
-
+renderer.renderMainUser(getMainUser())
+renderer.renderFriends(getUserFriends())
+renderer.renderPokemon(getPokemon())
+renderer.renderQuote(getQuote())
+renderer.renderAboutMe(getAboutMe())

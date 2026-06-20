@@ -33,17 +33,23 @@
                     }
         }),
         
-        pokemon : {name: "pickchu " , imge: "https://www.ebay.com/itm/263267872314" },
+        pokemon : {name: "pikachu" , image: "https://i.pinimg.com/originals/00/3c/06/003c06d5335a39359cc81083c08f1b82.jpg" },
         
-        qoute : "this is qoute ",
+        quote : "this is quote ",
 
-        aboutMe : "about be "
+        aboutMe : "about me "
     }
 
+export function getAllPageData(){
+
+    
+
+
+}
 
 
 export  function getUsersList(){
-        const usersListClone= {...users};
+        const usersListClone= [...users];
         return usersListClone;
     }
 
@@ -62,9 +68,9 @@ export  function getPokemon(){
         return pokemon;
     }
 
-export  function getQoute(){
-        const qoute = mockData.qoute;
-        return qoute;
+export  function getQuote(){
+        const quote = mockData.quote;
+        return quote;
     }
 
 export  function getAboutMe(){
