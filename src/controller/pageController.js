@@ -9,31 +9,46 @@ export default class PageController {
     this.currentPageData = null;
     }
 
-  generatePage() {
-
-        const pageData = this.apiManager.getAllPageData();
-        this.currentPageData = pageData ;
-        this.renderer.renderPage(pageData);
-   }
-    saveCurrentPage() {
-        if (this.currentPageData === null) {
-            this.renderer.renderMessage("No page data to save")
-            return
-        }
-        this.storageManager.savePage(this.currentPageData)
-        this.renderer.renderMessage("Page saved successfully")
+    generatePage() {
+        try{
+            const pageData = this.apiManager.getAllPageData();
+            this.currentPageData = pageData ;
+            this.renderer.renderPage(pageData);
+        } catch (error) {
+                console.error("Failed to generate page:", error)
+                this.renderer.renderMessage("Could not generate page")
+            }
     }
-  
+   
+    saveCurrentPage() {
+        try{
+            if (this.currentPageData === null) {
+                this.renderer.renderMessage("No page data to save")
+                return
+            }
+            this.storageManager.savePage(this.currentPageData)
+            this.renderer.renderMessage("Page saved successfully")
+        } catch(error){
+            console.error(error)
+            this.renderer.renderMessage("Could not save page")
+        }
+    }
 
     loadSavedPage() {
-        const savedPage = this.storageManager.loadPage()
+        try {
+            const savedPage = this.storageManager.loadPage()
 
-        if (savedPage === null) {
-            this.renderer.renderMessage("No saved page found")
-            return
+            if (savedPage === null) {
+                this.renderer.renderMessage("No saved page found")
+                return
+            }
+
+            this.currentPageData = savedPage
+            this.renderer.renderPage(savedPage)
+            this.renderer.renderMessage("Saved page loaded successfully")
+        } catch (error) {
+            console.error(error)
+            this.renderer.renderMessage("Could not load saved page")
         }
-        this.currentPageData = savedPage
-        this.renderer.renderPage(savedPage)
-        this.renderer.renderMessage("Saved page loaded successfully")
     }
 }
