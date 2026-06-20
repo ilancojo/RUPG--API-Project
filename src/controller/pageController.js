@@ -1,19 +1,19 @@
 
 export default class PageController {
 
-  constructor(apiManager, renderer){
-    this.apiManager = apiManager
-    this.renderer = renderer
-    this.currentPageData = null
+  constructor(apiManager, renderer,storageManager){
+   
+    this.apiManager = apiManager;
+    this.renderer = renderer;
+    this.storageManager = storageManager;
+    this.currentPageData = null;
     }
 
   generatePage() {
-        if (this.currentPageData === null) {
-            console.log("No page data to save")
-            return
-        }
-        this.storageManager.savePage(this.currentPageData)
-        console.log("Page saved successfully")
+
+        const pageData = this.apiManager.getAllPageData();
+        this.currentPageData = pageData ;
+        this.renderer.renderPage(pageData);
    }
     saveCurrentPage() {
         if (this.currentPageData === null) {
