@@ -1,0 +1,25 @@
+{
+  "name": "rupg--api-project",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "start": "vite",
+    "test": "echo \"No tests configured yet\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ilancojo/RUPG--API-Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ilancojo/RUPG--API-Project/issues"
+  },
+  "homepage": "https://github.com/ilancojo/RUPG--API-Project#readme",
+  "devDependencies": {
+    "vite": "^8.0.16"
+  }
+}

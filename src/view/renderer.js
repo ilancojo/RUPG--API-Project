@@ -16,8 +16,8 @@ export default class Renderer {
     const divInfo = document.createElement("div");
     const fullName = document.createElement("p");
     const location = document.createElement("p");
-    fullName.textContent = mainUser.firstName + " ," +  mainUser.lastName ;
-    location.textContent = mainUser.city + " ," +  mainUser.country ;
+    fullName.textContent = mainUser.firstName + " " +  mainUser.lastName ;
+    location.textContent = mainUser.city + ", " +  mainUser.country ;
 
     divImg.appendChild(img);
     divInfo.appendChild(fullName);
@@ -94,7 +94,7 @@ export default class Renderer {
         for (const friendInfo of friends){
 
             const li = document.createElement("li");
-            il.textContent = friendInfo.firstName + friendInfo.lastName;
+            li.textContent = friendInfo.firstName + " " + friendInfo.lastName;
 
             friendTable.appendChild(li);
         }
