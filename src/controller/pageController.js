@@ -11,6 +11,7 @@ export default class PageController {
 
    async generatePage() {
         try{
+            this.renderer.renderMessage("Loading user page...")
             const pageData = await this.apiManager.getAllPageData();
             this.currentPageData = pageData ;
             this.renderer.renderPage(pageData);

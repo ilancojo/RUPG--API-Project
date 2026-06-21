@@ -11,7 +11,7 @@ export default class ApiManager {
 
   async getAllPageData() {
     try {
-      const [usersData, pokemonData, quoteData, aboutMeData] = await Promise.all([
+      const [usersData, pokemonData,quoteData, aboutMeData]= await Promise.all([
         this.getUsers(),
         this.getPokemon(),
         this.getQuote(),
@@ -75,7 +75,7 @@ export default class ApiManager {
       if (!response.ok) {
         throw new Error("Failed to fetch pokemon");
       }
-      
+
       const onePokemon = await response.json();
 
       return {
