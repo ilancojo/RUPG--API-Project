@@ -2,34 +2,6 @@ import { getRandomPokemon } from "../utils/utils.js";
 import  { User }  from "./user.js";
 
 
-
-  const mockPages = [
-  {
-   
-    quote: "Believe in your flyness, conquer your shyness.",
-
-    aboutMe: "I am a curious person who enjoys technology, fitness, good food, and learning new things every day."
-  },
-
-  {
-
-    quote: "Keep your nose out the sky, keep your heart to God, and keep your face to the rising sun.",
-
-    aboutMe: "I love traveling, meeting new people, discovering new places, and spending quiet mornings with coffee and music."
-  },
-
-  {
-
-    quote: "Everything I’m not made me everything I am.",
-
-    aboutMe: "I enjoy coding, hiking, watching movies, and building small projects that make life easier and more interesting."
-  }
-]
-
-
-
-
-
 export default class ApiManager {
 
     constructor() {
@@ -37,25 +9,25 @@ export default class ApiManager {
     }
 
 
-
   async getAllPageData() {
-    const usersData = await this.getUsers();
-    const pokemonData = await this.getPokemon()   ;                                
-    
-    const mockPage = mockPages[this.currentPageIndex]
+    try {
+      const [usersData, pokemonData, quoteData, aboutMeData] = await Promise.all([
+        this.getUsers(),
+        this.getPokemon(),
+        this.getQuote(),
+        this.getAboutMe()
+      ])
 
-    this.currentPageIndex = this.currentPageIndex + 1
-
-    if (this.currentPageIndex === mockPages.length) {
-      this.currentPageIndex = 0
-    }
-
-    return {
-      mainUser: usersData.mainUser,
-      friends: usersData.friends,
-      pokemon: pokemonData,
-      quote: mockPage.quote,
-      aboutMe: mockPage.aboutMe
+      return {
+        mainUser: usersData.mainUser,
+        friends: usersData.friends,
+        pokemon: pokemonData,
+        quote: quoteData,
+        aboutMe: aboutMeData
+      }
+    }catch (error) {
+      console.error("Error getting page data:", error);
+      throw error
     }
   }
 
@@ -103,7 +75,7 @@ export default class ApiManager {
       if (!response.ok) {
         throw new Error("Failed to fetch pokemon");
       }
-
+      
       const onePokemon = await response.json();
 
       return {
