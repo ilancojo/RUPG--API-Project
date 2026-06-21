@@ -1,67 +1,11 @@
 //  import { Pokimon } from "./pokimon";
-//   import { User } from "./user";
+  import  { User }  from "./user.js";
 
 
-    const users = [
-        {
-            firstName : "ilan",//the first is the main 
-            lastName : "cojocaru" , 
-            image : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE-inDIP47m3R6ip87F88yAHVJTx5haz6HToMFpWxItA&s=10",
-            country : "israel",
-            city : "haifa"},
-            
-        {   firstName : "eden ",   // friend-1
-            lastName : "cojo" , 
-            image : "https://resizing.flixster.com/W4x6_f86mlDNOlgYocLXmo7xcoo=/fit-in/352x330/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/2255_v9_bb.jpg",
-            country : "israel",
-            city : "eilat"},
 
-        {   firstName : "sapir ",   // friend-2
-            lastName : "benda" , 
-            image : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD4NJY5ulb5b3invkWHLbTSngvZsDKJS2np1kmrtuOzQ&s=10",
-            country : "israel",
-            city : "naharia"}
-    ]
-/**
- * const mockData = {
-
-        mainUser: users[0],
-
-        friends: users.slice(1).map( friend=>{
-            return {    firstName :friend.firstName,
-                        lastName : friend.lastName
-                    }
-        }),
-        
-        pokemon : {name: "pikachu" , image: "https://i.pinimg.com/originals/00/3c/06/003c06d5335a39359cc81083c08f1b82.jpg" },
-        
-        quote : "this is quote ",
-
-        aboutMe : "about me "
-    }
- * 
- * 
- */
-
-    const mockPages = [
+  const mockPages = [
   {
-    mainUser: {
-      firstName: "Ilan",
-      lastName: "Cojocaru",
-      image: "https://randomuser.me/api/portraits/men/32.jpg",
-      country: "Israel",
-      city: "Haifa"
-    },
-
-    friends: [
-      { firstName: "Eden", lastName: "Cojo" },
-      { firstName: "Sapir", lastName: "Benda" },
-      { firstName: "Daniel", lastName: "Levi" },
-      { firstName: "Noa", lastName: "Cohen" },
-      { firstName: "Amit", lastName: "Mizrahi" },
-      { firstName: "Shir", lastName: "David" }
-    ],
-
+   
     pokemon: {
       name: "Pikachu",
       image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
@@ -73,23 +17,6 @@
   },
 
   {
-    mainUser: {
-      firstName: "Maria",
-      lastName: "Norris",
-      image: "https://randomuser.me/api/portraits/women/44.jpg",
-      country: "United States",
-      city: "Austin"
-    },
-
-    friends: [
-      { firstName: "Sandra", lastName: "Vestad" },
-      { firstName: "Sheila", lastName: "Curtis" },
-      { firstName: "Catalina", lastName: "Fuentes" },
-      { firstName: "Torf", lastName: "Edge" },
-      { firstName: "Jose", lastName: "Reyes" },
-      { firstName: "Emily", lastName: "Stone" }
-    ],
-
     pokemon: {
       name: "Charmander",
       image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"
@@ -101,23 +28,6 @@
   },
 
   {
-    mainUser: {
-      firstName: "James",
-      lastName: "Walker",
-      image: "https://randomuser.me/api/portraits/men/75.jpg",
-      country: "Canada",
-      city: "Toronto"
-    },
-
-    friends: [
-      { firstName: "Liam", lastName: "Brown" },
-      { firstName: "Emma", lastName: "Wilson" },
-      { firstName: "Olivia", lastName: "Taylor" },
-      { firstName: "Noah", lastName: "Anderson" },
-      { firstName: "Mia", lastName: "Thomas" },
-      { firstName: "Lucas", lastName: "Martin" }
-    ],
-
     pokemon: {
       name: "Squirtle",
       image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
@@ -129,20 +39,80 @@
   }
 ]
 
+
+
+
+
 export default class ApiManager {
+
     constructor() {
       this.currentPageIndex = 0
     }
 
-   getAllPageData() {
-      
-      const pageData = mockPages[this.currentPageIndex]
-      this.currentPageIndex = this.currentPageIndex + 1
 
-      if (this.currentPageIndex === mockPages.length){
-          this.currentPageIndex = 0;
-      }
-      return pageData
+
+  async getAllPageData() {
+    const usersData = await this.getUsers()
+
+    const mockPage = mockPages[this.currentPageIndex]
+
+    this.currentPageIndex = this.currentPageIndex + 1
+
+    if (this.currentPageIndex === mockPages.length) {
+      this.currentPageIndex = 0
+    }
+
+    return {
+      mainUser: usersData.mainUser,
+      friends: usersData.friends,
+      pokemon: mockPage.pokemon,
+      quote: mockPage.quote,
+      aboutMe: mockPage.aboutMe
     }
   }
+
+  async getUsers() {
+    try {
+      const response = await fetch("https://randomuser.me/api/?results=7")
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch users");
+      }
+
+      const data = await response.json()
+      const users = data.results;
+
+      const mainUser = new User({
+        firstName: users[0].name.first,
+        lastName: users[0].name.last,
+        image: users[0].picture.large,
+        country: users[0].location.country,
+        city: users[0].location.city
+      })
+
+      const friends = users.slice(1).map(friend => {
+        return new User({
+          firstName: friend.name.first,
+          lastName: friend.name.last
+        })
+      })
+
+      return {
+        mainUser: mainUser,
+        friends: friends
+      }
+
+    } catch (error) {
+      console.error("Error fetching users:", error)
+      throw error
+    }
+  }
+
+  
+
+
+
+}
+
+
 

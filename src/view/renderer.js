@@ -19,6 +19,7 @@ export default class Renderer {
     const img = document.createElement("img");
     img.src = mainUser.image;
     
+    
     const divInfo = document.createElement("div");
     const fullName = document.createElement("p");
     const location = document.createElement("p");

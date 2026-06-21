@@ -9,15 +9,15 @@ export default class PageController {
     this.currentPageData = null;
     }
 
-    generatePage() {
+   async generatePage() {
         try{
-            const pageData = this.apiManager.getAllPageData();
+            const pageData = await this.apiManager.getAllPageData();
             this.currentPageData = pageData ;
             this.renderer.renderPage(pageData);
         } catch (error) {
                 console.error("Failed to generate page:", error)
                 this.renderer.renderMessage("Could not generate page")
-            }
+        }
     }
    
     saveCurrentPage() {
