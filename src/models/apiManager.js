@@ -1,26 +1,17 @@
-//  import { Pokimon } from "./pokimon";
-  import  { User }  from "./user.js";
+import { getRandomPokemon } from "../utils/utils.js";
+import  { User }  from "./user.js";
 
 
 
   const mockPages = [
   {
    
-    pokemon: {
-      name: "Pikachu",
-      image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
-    },
-
     quote: "Believe in your flyness, conquer your shyness.",
 
     aboutMe: "I am a curious person who enjoys technology, fitness, good food, and learning new things every day."
   },
 
   {
-    pokemon: {
-      name: "Charmander",
-      image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"
-    },
 
     quote: "Keep your nose out the sky, keep your heart to God, and keep your face to the rising sun.",
 
@@ -28,10 +19,6 @@
   },
 
   {
-    pokemon: {
-      name: "Squirtle",
-      image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
-    },
 
     quote: "Everything I’m not made me everything I am.",
 
@@ -52,8 +39,9 @@ export default class ApiManager {
 
 
   async getAllPageData() {
-    const usersData = await this.getUsers()
-
+    const usersData = await this.getUsers();
+    const pokemonData = await this.getPokemon()   ;                                
+    
     const mockPage = mockPages[this.currentPageIndex]
 
     this.currentPageIndex = this.currentPageIndex + 1
@@ -65,7 +53,7 @@ export default class ApiManager {
     return {
       mainUser: usersData.mainUser,
       friends: usersData.friends,
-      pokemon: mockPage.pokemon,
+      pokemon: pokemonData,
       quote: mockPage.quote,
       aboutMe: mockPage.aboutMe
     }
@@ -108,11 +96,33 @@ export default class ApiManager {
     }
   }
 
-  
+  async getPokemon() {
+    try {
+      const randomNum = getRandomPokemon();
+      const response = await fetch("https://pokeapi.co/api/v2/pokemon/" + randomNum);
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch pokemon");
+      }
+
+      const onePokemon = await response.json();
+
+      return {
+        name : onePokemon.name,
+        image : onePokemon.sprites.front_default
+      };
+    } catch (error) {
+      console.error("Error fetching Pokemon:", error)
+      throw error
+    }
+  }
 
 
 
 }
+
+
+
 
 
 
