@@ -69,7 +69,6 @@ export default class ApiManager {
 
       const data = await response.json()
       const users = data.results;
-
       const mainUser = new User({
         firstName: users[0].name.first,
         lastName: users[0].name.last,
