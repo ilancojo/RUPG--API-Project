@@ -42,7 +42,7 @@ export default class PageController {
                 this.renderer.renderMessage("No saved page found")
                 return
             }
-
+            
             this.currentPageData = savedPage
             this.renderer.renderPage(savedPage)
             this.renderer.renderMessage("Saved page loaded successfully")

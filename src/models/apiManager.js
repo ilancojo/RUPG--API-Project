@@ -117,6 +117,45 @@ export default class ApiManager {
   }
 
 
+  async getQuote() {
+    try {
+      const response = await fetch("https://api.kanye.rest");
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch Quote");
+      }
+
+      const data = await response.json();
+
+      return data.quote;
+
+    } catch (error) {
+      console.error("Error fetching Quote:", error)
+      throw error
+    }
+  }
+
+  async getAboutMe() {
+    try {
+      const response = await fetch("https://baconipsum.com/api/?type=meat-and-filler&paras=5&format=text");
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch about-Me");
+      }
+
+      const aboutMe = await response.text();
+
+      return aboutMe;
+
+    } catch (error) {
+      console.error("Error fetching about-Me:", error)
+      throw error
+    }
+  }
+
+
+
+
 
 }
 
