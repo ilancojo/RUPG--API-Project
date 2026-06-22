@@ -1,19 +1,35 @@
 
 export default class StorageManager {
- 
-  savePage(pageData) {
-
-    localStorage.setItem("savedPage", JSON.stringify(pageData));
+    constructor() {
+      this.storageKey = "savedPages"
   }
 
-  loadPage() {
+ savePage(pageData) {
+    const savedPages = this.getSavedPages()
+    const pageId = pageData.mainUser.firstName + "  " +pageData.mainUser.lastName ;
+    savedPages[fullName] = pageData;
 
-    const storedDataPage = JSON.parse(localStorage.getItem("savedPage")); 
+    localStorage.setItem(this.storageKey, JSON.stringify(savedPages))
+    return fullName
+  }
 
-    if (storedDataPage === null  ){
-        return null
+  loadPage(fullName) {
+    const savedPages = this.getSavedPages()
+
+    if (!fullName || savedPages[fullName] === undefined) {
+      return null
     }
-    return storedDataPage;
-
+    return savedPages[fullName]
   }
+
+
+  getSavedPages() {
+    const savedPagesString = localStorage.getItem(this.storageKey)
+
+    if (savedPagesString === null) {
+      return {}
+    }
+    return JSON.parse(savedPagesString)
+  }
+
 }

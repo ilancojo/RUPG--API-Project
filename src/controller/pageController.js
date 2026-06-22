@@ -39,9 +39,9 @@ export default class PageController {
         }
     }
 
-    loadSavedPage() {
+    loadSavedPage(fullName) {
         try {
-            const savedPage = this.storageManager.loadPage()
+            const savedPage = this.storageManager.loadPage(fullName)
 
             if (savedPage === null) {
                 this.renderer.renderMessage("No saved page found")
@@ -58,8 +58,8 @@ export default class PageController {
     }
 
     renderSavedPagesList() {
-    const savedPages = this.storageManager.getSavedPages()
-    this.renderer.renderSavedPagesDropdown(savedPages)
+        const savedPages = this.storageManager.getSavedPages()
+        this.renderer.renderSavedPagesDropdown(savedPages)
     }
 
 }

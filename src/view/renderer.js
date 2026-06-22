@@ -126,12 +126,12 @@ export default class Renderer {
         const btnContainer = document.getElementById("btn-container")
         const loadButton = document.getElementById("btn-load")
         
-        const oldSelect = document.getElementById("saved-pages-select")
-        const savedPageIds = Object.keys(savedPages) ;
+        const oldSelect = document.getElementById("saved-pages-select") 
+        const savedNames = Object.keys(savedPages)
         
         const select = document.createElement("select");
         const defaultOption = document.createElement("option");
-        const option = document.createElement("option")
+       
         
         //Prevents creating extra dropdowns
         if (oldSelect !== null) {
@@ -153,8 +153,8 @@ export default class Renderer {
             const pageData = savedPages[pageId];
             const option = document.createElement("option");
           
-            option.value = pageId;
-            option.textContent =pageData.mainUser.firstName + " " + pageData.mainUser.lastName
+            option.value = fullName;
+            option.textContent =fullName;
         
             select.appendChild(option);
         }
