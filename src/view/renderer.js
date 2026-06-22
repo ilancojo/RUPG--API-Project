@@ -11,13 +11,14 @@ export default class Renderer {
     this.renderAboutMe(pageData.aboutMe)
     }
 
-    renderMainUser(mainUser){  
+renderMainUser(mainUser){  
     const mainUserContainer = document.getElementById("main-user-container")
     mainUserContainer.innerHTML = "";
     
     const divImg = document.createElement("div");
     const img = document.createElement("img");
     img.src = mainUser.image;
+    img.classList.add("main-user-img");
     
     
     const divInfo = document.createElement("div");
@@ -131,13 +132,10 @@ export default class Renderer {
         const select = document.createElement("select")
         const defaultOption = document.createElement("option")
 
-
         // Prevents creating extra dropdowns
         if (oldDropdownContainer !== null) {
             oldDropdownContainer.remove()
         }
-
-
         // No saved users = Do not create dropdown
         if (savedNames.length === 0) {
             return

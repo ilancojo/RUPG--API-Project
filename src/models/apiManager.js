@@ -1,4 +1,4 @@
-import { getRandomPokemon } from "../utils/utils.js";
+import { getRandomPokemon, toProperCase } from "../utils/utils.js";
 import  { User }  from "./user.js";
 
 
@@ -79,9 +79,9 @@ export default class ApiManager {
       const onePokemon = await response.json();
 
       return {
-        name : onePokemon.name,
-        image : onePokemon.sprites.front_default
-      };
+        name: toProperCase(onePokemon.name),
+        image: onePokemon.sprites.front_default
+      }
     } catch (error) {
       console.error("Error fetching Pokemon:", error)
       throw error
