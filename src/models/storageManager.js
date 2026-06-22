@@ -1,16 +1,16 @@
 
 export default class StorageManager {
  
-    savePage(pageData) {
+  savePage(pageData) {
 
-        localStorage.setItem("savedPage", JSON.stringify(pageData));
-     }
+    localStorage.setItem("savedPage", JSON.stringify(pageData));
+  }
 
   loadPage() {
 
     const storedDataPage = JSON.parse(localStorage.getItem("savedPage")); 
 
-    if (storedDataPage === null ){
+    if (storedDataPage === null  ){
         return null
     }
     return storedDataPage;

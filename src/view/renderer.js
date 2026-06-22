@@ -121,9 +121,45 @@ export default class Renderer {
         messageContainer.appendChild(errorMessage)
     }
 
+
+    renderSavedPagesDropdown(savedPages) {
+        const btnContainer = document.getElementById("btn-container")
+        const loadButton = document.getElementById("btn-load")
+        
+        const oldSelect = document.getElementById("saved-pages-select")
+        const savedPageIds = Object.keys(savedPages) ;
+        
+        const select = document.createElement("select");
+        const defaultOption = document.createElement("option");
+        const option = document.createElement("option")
+        
+        //Prevents creating extra dropdowns
+        if (oldSelect !== null) {
+            oldSelect.remove();
+        }
+        //No saved users = Do not create dropdown
+        if (savedPageIds.length === 0) {
+            return
+        }
+
+        select.id = "saved-pages-select";
+        defaultOption.value = "";
+        defaultOption.textContent = "Select saved user"
+
+        select.appendChild(defaultOption);
+        
+        for (const pageId of savedPageIds) {
+           
+            const pageData = savedPages[pageId];
+            const option = document.createElement("option");
+          
+            option.value = pageId;
+            option.textContent =pageData.mainUser.firstName + " " + pageData.mainUser.lastName
+        
+            select.appendChild(option);
+        }
+        btnContainer.insertBefore(select, loadButton)
+    }
+
 }
-
-
-
-
 

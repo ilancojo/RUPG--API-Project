@@ -22,8 +22,16 @@ saveButton.addEventListener("click", function () {
   pageController.saveCurrentPage()
 })
 loadButton.addEventListener("click", function () {
-  pageController.loadSavedPage()
+  const savedPagesSelect = document.getElementById("saved-pages-select")
+  if (savedPagesSelect === null) {
+    pageController.loadSavedPage("");
+    return
+  }
+
+  pageController.loadSavedPage(savedPagesSelect.value);
 })
 
-
+pageController.renderSavedPagesList()
 pageController.generatePage()
+
+

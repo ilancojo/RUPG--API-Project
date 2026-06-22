@@ -28,6 +28,10 @@ export default class PageController {
                 return
             }
             this.storageManager.savePage(this.currentPageData)
+
+            const savedPages = this.storageManager.getSavedPages()
+            this.renderer.renderSavedPagesDropdown(savedPages)
+
             this.renderer.renderMessage("Page saved successfully")
         } catch(error){
             console.error(error)
@@ -52,4 +56,10 @@ export default class PageController {
             this.renderer.renderMessage("Could not load saved page")
         }
     }
+
+    renderSavedPagesList() {
+    const savedPages = this.storageManager.getSavedPages()
+    this.renderer.renderSavedPagesDropdown(savedPages)
+    }
+
 }
