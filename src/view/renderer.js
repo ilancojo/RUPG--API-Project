@@ -121,44 +121,44 @@ export default class Renderer {
         messageContainer.appendChild(errorMessage)
     }
 
-
     renderSavedPagesDropdown(savedPages) {
         const btnContainer = document.getElementById("btn-container")
-        const loadButton = document.getElementById("btn-load")
-        
-        const oldSelect = document.getElementById("saved-pages-select") 
+        const messageContainer = document.getElementById("message-container")
+
+        const oldDropdownContainer = document.getElementById("saved-pages-container")
         const savedNames = Object.keys(savedPages)
-        
-        const select = document.createElement("select");
-        const defaultOption = document.createElement("option");
-       
-        
-        //Prevents creating extra dropdowns
-        if (oldSelect !== null) {
-            oldSelect.remove();
+        const dropdownContainer = document.createElement("div")
+        const select = document.createElement("select")
+        const defaultOption = document.createElement("option")
+
+
+        // Prevents creating extra dropdowns
+        if (oldDropdownContainer !== null) {
+            oldDropdownContainer.remove()
         }
-        //No saved users = Do not create dropdown
-        if (savedPageIds.length === 0) {
+
+
+        // No saved users = Do not create dropdown
+        if (savedNames.length === 0) {
             return
         }
 
-        select.id = "saved-pages-select";
-        defaultOption.value = "";
+        dropdownContainer.id = "saved-pages-container"
+        select.id = "saved-pages-select"
+        defaultOption.value = ""
         defaultOption.textContent = "Select saved user"
+        select.appendChild(defaultOption)
 
-        select.appendChild(defaultOption);
-        
-        for (const pageId of savedPageIds) {
-           
-            const pageData = savedPages[pageId];
-            const option = document.createElement("option");
-          
-            option.value = fullName;
-            option.textContent =fullName;
-        
-            select.appendChild(option);
+        for (const fullName of savedNames) {
+            const option = document.createElement("option")
+
+            option.value = fullName
+            option.textContent = fullName
+
+            select.appendChild(option)
         }
-        btnContainer.insertBefore(select, loadButton)
+        dropdownContainer.appendChild(select)
+        btnContainer.parentNode.insertBefore(dropdownContainer, messageContainer)
     }
 
 }

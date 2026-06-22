@@ -6,7 +6,8 @@ export default class StorageManager {
 
  savePage(pageData) {
     const savedPages = this.getSavedPages()
-    const pageId = pageData.mainUser.firstName + "  " +pageData.mainUser.lastName ;
+    
+    const fullName = pageData.mainUser.firstName + "  " +pageData.mainUser.lastName ;
     savedPages[fullName] = pageData;
 
     localStorage.setItem(this.storageKey, JSON.stringify(savedPages))
